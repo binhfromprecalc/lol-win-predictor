@@ -84,7 +84,7 @@ def process_game(match_path, timeline_path):
 
         row = {
             "minute": minute,
-
+            "game_id": match_data["metadata"]["matchId"],
             "gold_diff": blue_gold - red_gold,
             "kills_diff": blue_kills - red_kills,
             "towers_diff": blue_towers - red_towers,

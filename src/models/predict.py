@@ -15,8 +15,11 @@ def predict(features: dict):
 
 if __name__ == "__main__":
     sample = {
-        "gold_diff": 2000,
-        "minute": 15
+        "minute": 15,
+        "kills_diff": 10,
+        "towers_diff": 2,
+        "dragons_diff": 1,
+        "gold_diff_per_min": 200,
     }
 
     print("Win Probability:", predict(sample))

@@ -12,7 +12,7 @@ MODEL_PATH = "models/logistic_regression.pkl"
 def train():
     df = pd.read_csv(DATA_PATH)
 
-    X = df.drop(columns=["win"])
+    X = df.drop(columns=["win", "game_id"])
     y = df["win"]
 
     X_train, X_test, y_train, y_test = train_test_split(
