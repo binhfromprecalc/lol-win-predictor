@@ -19,6 +19,9 @@ if __name__ == "__main__":
         "kills_diff": 10,
         "towers_diff": 2,
         "dragons_diff": 1,
+        # "grubs_diff": 0,
+        # "herald_diff": 0,
+        # "baron_diff": 0,
         "gold_diff_per_min": 200,
     }
 

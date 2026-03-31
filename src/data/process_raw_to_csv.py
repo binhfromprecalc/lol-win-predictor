@@ -43,6 +43,12 @@ def process_game(match_path, timeline_path):
     red_towers = 0
     blue_dragons = 0
     red_dragons = 0
+    # blue_grubs = 0
+    # red_grubs = 0
+    # blue_heralds = 0
+    # red_heralds = 0
+    # blue_barons = 0
+    # red_barons = 0
 
     rows = []
 
@@ -71,13 +77,32 @@ def process_game(match_path, timeline_path):
                         red_towers += 1
 
             elif event["type"] == "ELITE_MONSTER_KILL":
-                if event.get("monsterType") == "DRAGON":
-                    killer = event.get("killerId", 0)
-
-                    if 1 <= killer <= 5:
+                killer_team = event.get("killerTeamId")
+                monster_type = event.get("monsterType")
+                
+                if monster_type == "DRAGON":
+                    if killer_team == 100:
                         blue_dragons += 1
-                    elif 6 <= killer <= 10:
+                    elif killer_team == 200:
                         red_dragons += 1
+                
+                # elif monster_type == "HORDE":
+                #     if killer_team == 100:
+                #         blue_grubs += 1
+                #     elif killer_team == 200:
+                #         red_grubs += 1
+                
+                # elif monster_type == "RIFTHERALD":
+                #     if killer_team == 100:
+                #         blue_heralds += 1
+                #     elif killer_team == 200:
+                #         red_heralds += 1
+                
+                # elif monster_type == "BARON_NASHOR":
+                #     if killer_team == 100:
+                #         blue_barons += 1
+                #     elif killer_team == 200:
+                #         red_barons += 1
 
         blue_gold, red_gold = get_team_gold(frame)
 
@@ -89,6 +114,9 @@ def process_game(match_path, timeline_path):
             "kills_diff": blue_kills - red_kills,
             "towers_diff": blue_towers - red_towers,
             "dragons_diff": blue_dragons - red_dragons,
+            # "grubs_diff": blue_grubs - red_grubs,
+            # "herald_diff": blue_heralds - red_heralds,
+            # "baron_diff": blue_barons - red_barons,
 
             "win": 1 if winner == 100 else 0
         }

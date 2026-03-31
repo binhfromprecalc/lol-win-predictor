@@ -43,10 +43,9 @@ def get_puuid(game_name: str, tag_line: str) -> str:
     return data["puuid"]
 
 
-def get_match_ids(puuid: str, start=0, count=20) -> List[str]:
+def get_match_ids(puuid: str, start=0, count=80) -> List[str]:
     url = f"{BASE_URL}/lol/match/v5/matches/by-puuid/{puuid}/ids"
     params = {
-        "queue": 420,
         "start": start,
         "count": count
     }
@@ -70,7 +69,7 @@ def save_json(data, path):
         json.dump(data, f)
 
 
-def fetch_and_store_matches(game_name: str, tag_line: str, num_matches=20):
+def fetch_and_store_matches(game_name: str, tag_line: str, num_matches):
     puuid = get_puuid(game_name, tag_line)
     print(f"PUUID: {puuid}")
 
@@ -99,4 +98,4 @@ def fetch_and_store_matches(game_name: str, tag_line: str, num_matches=20):
 
 
 if __name__ == "__main__":
-    fetch_and_store_matches("binh", "NA1", num_matches=20)
+    fetch_and_store_matches("binh", "NA1", num_matches=80)
