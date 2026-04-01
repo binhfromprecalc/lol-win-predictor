@@ -1,18 +1,21 @@
 import pandas as pd
-import joblib
 import matplotlib.pyplot as plt
 
-MODEL_PATH = "models/logistic_regression.pkl"
+try:
+    from src.models.model_io import MODEL_PATH, load_model_bundle, prepare_features
+except ModuleNotFoundError:
+    from model_io import MODEL_PATH, load_model_bundle, prepare_features
 
 
 def plot_game_probability(csv_path, game_id):
-    model = joblib.load(MODEL_PATH)
+    bundle = load_model_bundle(MODEL_PATH)
+    model = bundle["model"]
 
     df = pd.read_csv(csv_path)
 
     df = df[df["game_id"] == game_id]
 
-    X = df.drop(columns=["win", "game_id"])
+    X = prepare_features(df.drop(columns=["win", "game_id"]), bundle.get("feature_names"))
     probs = model.predict_proba(X)[:, 1]
 
     plt.figure()
@@ -23,5 +26,5 @@ def plot_game_probability(csv_path, game_id):
     plt.show()
 
 if __name__ == "__main__":
-    plot_game_probability("data/processed/dataset.csv", "NA1_5500415228")
+    plot_game_probability("data/processed/dataset.csv", "NA1_5497255828")
 

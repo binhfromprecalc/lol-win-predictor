@@ -1,13 +1,13 @@
-import joblib
-import pandas as pd
-
-MODEL_PATH = "models/logistic_regression.pkl"
+try:
+    from src.models.model_io import MODEL_PATH, load_model_bundle, prepare_features
+except ModuleNotFoundError:
+    from model_io import MODEL_PATH, load_model_bundle, prepare_features
 
 
 def predict(features: dict):
-    model = joblib.load(MODEL_PATH)
-
-    df = pd.DataFrame([features])
+    bundle = load_model_bundle(MODEL_PATH)
+    model = bundle["model"]
+    df = prepare_features(features, bundle.get("feature_names"))
     prob = model.predict_proba(df)[0][1]
 
     return prob

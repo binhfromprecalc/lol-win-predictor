@@ -98,4 +98,4 @@ def fetch_and_store_matches(game_name: str, tag_line: str, num_matches):
 
 
 if __name__ == "__main__":
-    fetch_and_store_matches("binh", "NA1", num_matches=80)
+    fetch_and_store_matches("binh", "NA1", num_matches=20)

@@ -1,6 +1,9 @@
 .env*
+__pycache__/
+*.py[cod]
 # ---------------------------
 # Data files
 # ---------------------------
 data/raw/
 data/processed/
+requirements.txt

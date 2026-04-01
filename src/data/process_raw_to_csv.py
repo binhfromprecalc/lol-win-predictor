@@ -43,6 +43,8 @@ def process_game(match_path, timeline_path):
     red_towers = 0
     blue_dragons = 0
     red_dragons = 0
+    blue_dragon_soul = 0
+    red_dragon_soul = 0
     # blue_grubs = 0
     # red_grubs = 0
     # blue_heralds = 0
@@ -107,6 +109,7 @@ def process_game(match_path, timeline_path):
         blue_gold, red_gold = get_team_gold(frame)
 
 
+        
         row = {
             "minute": minute,
             "game_id": match_data["metadata"]["matchId"],
